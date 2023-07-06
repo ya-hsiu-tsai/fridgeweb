@@ -7,14 +7,19 @@ if($sql->execute([htmlspecialchars($_REQUEST['name'])]))
 {
     if(empty($sql->fetchAll()))
     {
-        $sql = $pdo->prepare('insert into user values(null, ?, ?, ?)');
+        $pwd_hash = password_hash($_REQUEST['pwd'], PASSWORD_DEFAULT);
+        if(empty($_REQUEST['company']))
+            $company = '個人';
+        else
+            $company = $_REQUEST['company'];
+        $sql = $pdo->prepare('insert into user values(null, ?, ?, ?, ?, ?)');
         $sql->execute([
-            htmlspecialchars($_REQUEST['name']), $_REQUEST['mail'], $_REQUEST['pwd']
+            htmlspecialchars($_REQUEST['name']), $_REQUEST['mail'], $_REQUEST['tel'],
+            $company, $pwd_hash
         ]);
         echo '新管理者帳戶註冊成功<br>';
         echo '<a href="home.php">回首頁</a><br>';
         echo '<a href="login.php">管理者登入</a>';
-        exit;
     }
     else
     {

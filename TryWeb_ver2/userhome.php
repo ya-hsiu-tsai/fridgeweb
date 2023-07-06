@@ -15,13 +15,14 @@ $sql = $pdo->prepare('select * from fridge where user_id=?');
 $sql->execute([$_SESSION['user']['id']]);
 echo '我的冰箱<br>';
 echo '<table>';
+echo '<th>冰箱名稱</th><th>地點</th>';
 $c = 0;
 foreach($sql->fetchAll() as $row)
 {
     $c++;
     echo '<tr>';
     echo '<td>';
-    echo '<a href="fridgedetail.php?id=', $row['id'], '">', $row['name'], '</a>';
+    echo '<a href="userfridgedetail.php?id=', $row['id'], '">', $row['name'], '</a>';
     echo '</td>';
     echo '<td>', $row['address'], '</td>';
     echo '</tr>';

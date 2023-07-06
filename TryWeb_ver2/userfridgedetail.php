@@ -1,16 +1,14 @@
 <?php require 'header.php'; ?>
 //假裝這裡有ㄍ地圖:D<br>
 //啊這裡食物放進去的時間怎麼寫我也沒懂<br>
-<a href="home.php">回首頁</a><br>
+<a href="userhome.php">回首頁</a><br>
 <?php
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
 $sql = $pdo->prepare('select * from fridge where id=?');
 $sql->execute([$_REQUEST['id']]);
 foreach($sql->fetchAll() as $row)
 {
-
     echo '冰箱名稱：', $row['name'], '<br>';
-    echo '冰箱管理者：', '<br>';
     echo '冰箱所屬機構：', $row['company'], '<br>';
     echo '聯絡電話：', $row['tel'], '<br>';
     echo '冰箱地點：', $row['address'], '<br>';
@@ -35,5 +33,6 @@ if($c == 0)
     echo '<tr><td colspan="3">冰箱內沒有食物</td></tr>';
 echo '</table>';
 echo '使用者回報<br>';
+echo '<a href="delfridge.php?id=', $_REQUEST['id'], 'onclick="return confirm("是否確認要刪除冰箱？")"> 移除冰箱 </a><br>';
 ?>
 <?php require 'footer.php'; ?>

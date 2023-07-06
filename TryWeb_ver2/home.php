@@ -30,4 +30,25 @@
 //這裡不知道怎辦<br>
 //地圖？表格？嗯？？<br>
 //地圖選單表格全部連動在一起我不會QAQ<br>
+//不管怎樣我先把所有冰箱列出來好ㄌ<br>
+<?php
+$pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
+$sql = $pdo->prepare('select * from fridge');
+$sql->execute([]);
+echo '<table>';
+echo '<th>冰箱名稱</th><th>地點</th>';
+$c = 0;
+foreach($sql->fetchAll() as $row)
+{
+    $c++;
+    echo '<tr>';
+    echo '<td>';
+    echo '<a href="fridgedetail.php?id=', $row['id'], '">', $row['name'], '</a>';
+    echo '</td>';
+    echo '<td>', $row['address'], '</td>';
+    echo '</tr>';
+}
+if($c == 0)
+    echo '目前還沒有冰箱<br>';
+?>
 <?php require 'footer.php'; ?>

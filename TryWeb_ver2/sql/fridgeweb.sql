@@ -7,7 +7,9 @@ create table user (
 	id int auto_increment primary key, 
 	name varchar(200) not null unique, 
 	mail varchar(200) not null, 
-	password varchar(100) not null
+	tel int not null,
+	company varchar(200) not null,
+	password_hash varchar(200) not null
 );
 
 create table fridge (
@@ -26,6 +28,10 @@ create table product (
 	name varchar(200) not null unique,
 	kind varchar(200) not null,
 	num int not null,
+	put_time varchar(200) not null,
+	alarm_time varchar(200) not null,
+	photo_name varchar(200) not null,
+	exist int not null,
 	fridge_id int not null,
 	foreign key(fridge_id) references fridge(id)
 );
