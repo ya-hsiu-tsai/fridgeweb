@@ -32,7 +32,6 @@ foreach($sql->fetchAll() as $row)
 if($c == 0)
     echo '<tr><td colspan="3">冰箱內沒有食物</td></tr>';
 echo '</table>';
-echo '使用者回報<br>';
 echo '<a href="delfridge.php?id=', $_REQUEST['id'], 'onclick="return confirm("是否確認要刪除冰箱？")"> 移除冰箱 </a><br>';
 ?>
 <?php require 'footer.php'; ?>

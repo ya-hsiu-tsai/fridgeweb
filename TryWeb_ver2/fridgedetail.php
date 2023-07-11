@@ -8,9 +8,11 @@ $sql = $pdo->prepare('select * from fridge where id=?');
 $sql->execute([$_REQUEST['id']]);
 foreach($sql->fetchAll() as $row)
 {
-
+    $sql_user = $pdo->prepare('select * from user where id=?');
+    $sql_user->execute([$row['user_id']]);
+    $user_name = $sql_user->fetchAll();
     echo '冰箱名稱：', $row['name'], '<br>';
-    echo '冰箱管理者：', '<br>';
+    echo '冰箱管理者：', $user_name[0]['name'], '<br>';
     echo '冰箱所屬機構：', $row['company'], '<br>';
     echo '聯絡電話：', $row['tel'], '<br>';
     echo '冰箱地點：', $row['address'], '<br>';
@@ -34,6 +36,6 @@ foreach($sql->fetchAll() as $row)
 if($c == 0)
     echo '<tr><td colspan="3">冰箱內沒有食物</td></tr>';
 echo '</table>';
-echo '使用者回報<br>';
+echo '<a href="comment.php?fridge_id=', $_REQUEST['id'], '">使用者回報</a>';
 ?>
 <?php require 'footer.php'; ?>

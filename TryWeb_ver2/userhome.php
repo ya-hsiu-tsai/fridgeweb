@@ -9,7 +9,8 @@ if(!isset($_SESSION['user']))
 }
 echo '<a href="userinfo.php">', $_SESSION['user']['name'], '</a><br>';
 echo '愛心冰箱整合地圖<br>';
-echo '<a href="addfridge.php"> 新增冰箱 </a><br>';
+echo '<a href="addfridge.php"> 新增冰箱 </a>';
+echo '<a href="usercomment.php"> 使用者回報 </a><br>';
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
 $sql = $pdo->prepare('select * from fridge where user_id=?');
 $sql->execute([$_SESSION['user']['id']]);
