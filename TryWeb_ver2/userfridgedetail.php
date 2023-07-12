@@ -1,6 +1,8 @@
 <?php require 'header.php'; ?>
-//假裝這裡有ㄍ地圖:D<br>
+//噢耶這裡有地圖ㄌ:D<br>
 //啊這裡食物放進去的時間怎麼寫我也沒懂<br>
+<div id="map"></div>
+<script src="scripts/map.js"></script>
 <a href="userhome.php">回首頁</a><br>
 <?php
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
@@ -13,6 +15,7 @@ foreach($sql->fetchAll() as $row)
     echo '聯絡電話：', $row['tel'], '<br>';
     echo '冰箱地點：', $row['address'], '<br>';
     echo '冰箱座標：', $row['coordinate'], '<br>';
+    echo '<script> showmap("', $row['address'], '"); </script>';
 }
 $sql = $pdo->prepare('select * from product where fridge_id=?');
 $sql->execute([$_REQUEST['id']]);

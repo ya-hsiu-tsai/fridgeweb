@@ -31,7 +31,7 @@ create table product (
 	put_time varchar(200) not null,
 	alarm_time varchar(200) not null,
 	photo_name varchar(200) not null,
-	exist int not null,
+	exist int not null default 0,
 	fridge_id int not null,
 	foreign key(fridge_id) references fridge(id)
 );
@@ -40,5 +40,6 @@ create table comment (
 	id int auto_increment primary key,
 	content varchar(1024) not null,
 	fridge_id int not null,
+	solve int not null default 0,
 	foreign key(fridge_id) references fridge(id)
 );

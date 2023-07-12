@@ -6,7 +6,7 @@ $sql = $pdo->prepare('select * from fridge where user_id=?');
 $sql->execute([$_SESSION['user']['id']]);
 echo '使用者回報系統<br>';
 echo '管理者：', $_SESSION['user']['name'], '<br>';
-echo '回報內容（未解決）：<br>';
+echo '回報內容（已解決）：<br>';
 foreach($sql->fetchAll() as $row)
 {
     echo '<table>';
@@ -16,18 +16,17 @@ foreach($sql->fetchAll() as $row)
     $n = 1;
     foreach($sql_comment->fetchAll() as $row2)
     {
-        if($row2['solve'] == 0)
+        if($row2['solve'] == 1)
         {
-            echo '<tr><td>', $n, '</td><td>', $row2['content'], '</td>';
-            echo '<td><a href="solve.php?id=', $row2['id'], '">已解決</a></td></tr>';
+            echo '<tr><td>', $n, '</td><td>', $row2['content'], '</td></tr>';
             $n++;
         }
     }
     if($n == 1)
-        echo '<tr><td colspan="3">冰箱沒有回報內容</td></tr>';
+        echo '<tr><td colspan="3">冰箱沒有已解決問題</td></tr>';
     echo '</table>';
 }
-echo '<a href="solvedproblem.php">已解決問題</a><br>'
 ?>
+<a href="usercomment.php">未解決問題</a><br>
 <a href="userhome.php">回首頁</a><br>
 <?php require 'footer.php'; ?>
