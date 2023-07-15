@@ -11,7 +11,7 @@ if($sql->execute([htmlspecialchars($_REQUEST['fridgename'])]))
         $sql = $pdo->prepare('insert into fridge values(null, ?, ?, ?, ?, ?, ?)');
         $sql->execute([
             htmlspecialchars($_REQUEST['fridgename']), $_REQUEST['fridgecomp'], $_REQUEST['fridgephone'],
-            $address, $_REQUEST['fridgecoor'], $_SESSION['user']['id']
+            $address, $_REQUEST['fridgecoor'], $_SESSION['users']['id']
         ]);
         echo '冰箱新增成功<br>';
     }
@@ -21,7 +21,7 @@ if($sql->execute([htmlspecialchars($_REQUEST['fridgename'])]))
         echo '此冰箱名稱已被使用<br>';
     }
 }
-echo '冰箱管理者：', $_SESSION['user']['name'], '<br>';
+echo '冰箱管理者：', $_SESSION['users']['name'], '<br>';
 echo '冰箱名稱：', $_REQUEST['fridgename'], '<br>';
 echo '冰箱所屬機構：', $_REQUEST['fridgecomp'], '<br>';
 echo '聯絡電話：', $_REQUEST['fridgephone'], '<br>';

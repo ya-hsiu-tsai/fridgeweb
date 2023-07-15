@@ -2,7 +2,7 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
-$sql = $pdo->prepare('select * from user where name=?');
+$sql = $pdo->prepare('select * from users where name=?');
 if($sql->execute([htmlspecialchars($_REQUEST['name'])]))
 {
     if(empty($sql->fetchAll()))
@@ -12,7 +12,7 @@ if($sql->execute([htmlspecialchars($_REQUEST['name'])]))
             $company = '個人';
         else
             $company = $_REQUEST['company'];
-        $sql = $pdo->prepare('insert into user values(null, ?, ?, ?, ?, ?)');
+        $sql = $pdo->prepare('insert into users values(null, ?, ?, ?, ?, ?)');
         $sql->execute([
             htmlspecialchars($_REQUEST['name']), $_REQUEST['mail'], $_REQUEST['tel'],
             $company, $pwd_hash

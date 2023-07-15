@@ -1,5 +1,5 @@
 <?php require 'header.php'; ?>
-//假裝這裡有ㄍ地圖:D<br>
+//噢耶這裡有地圖ㄌ:D<br>
 //啊這裡食物放進去的時間怎麼寫我也沒懂<br>
 <div id="map"></div>
 <script src="scripts/map.js"></script>
@@ -10,8 +10,8 @@ $sql = $pdo->prepare('select * from fridge where id=?');
 $sql->execute([$_REQUEST['id']]);
 foreach($sql->fetchAll() as $row)
 {
-    $sql_user = $pdo->prepare('select * from user where id=?');
-    $sql_user->execute([$row['user_id']]);
+    $sql_user = $pdo->prepare('select * from users where id=?');
+    $sql_user->execute([$row['users_id']]);
     $user_name = $sql_user->fetchAll();
     echo '冰箱名稱：', $row['name'], '<br>';
     echo '冰箱管理者：', $user_name[0]['name'], '<br>';

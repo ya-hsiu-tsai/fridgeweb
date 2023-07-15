@@ -27,14 +27,11 @@
         <option value="none" selected disabled hidden>請選擇鄉鎮市區</option>
     </select>
 </form>
-//這裡不知道怎辦<br>
-//地圖？表格？嗯？？<br>
-//地圖選單表格全部連動在一起我不會QAQ<br>
-//不管怎樣我先把所有冰箱列出來好ㄌ<br>
 <?php
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
-$sql = $pdo->prepare('select * from fridge');
-$sql->execute([]);
+$sql = $pdo->prepare('select * from fridge where address like ?');
+$address = $_REQUEST['county'].$_REQUEST['area'];
+$sql->execute(['%'.$address.'%']);
 echo '<table>';
 echo '<th>冰箱名稱</th><th>地點</th>';
 $c = 0;
@@ -49,6 +46,19 @@ foreach($sql->fetchAll() as $row)
     echo '</tr>';
 }
 if($c == 0)
-    echo '目前還沒有冰箱<br>';
+    echo '<tr><td colspan="2">目前還沒有冰箱</td></tr>';
+echo '</table>';
 ?>
+<div id="map"></div>
+<script src="scripts/map.js"></script>
+<script>
+    navigator.geolocation.getCurrentPosition(getcoordinate);  
+    function getcoordinate(position)
+    {  
+        var lat = position.coords.latitude;  
+        var long = position.coords.longitude;  
+        var address = lat + "," + long;
+        showmap(address);
+    }
+</script>
 <?php require 'footer.php'; ?>

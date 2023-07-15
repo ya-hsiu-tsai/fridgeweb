@@ -4,8 +4,8 @@
 <form name="select_location" action="addfridgeout.php" method="post">
     新增冰箱<br>
     冰箱名稱：<input type="text" name="fridgename" required><br>
-    冰箱所屬機構：<input type="text" name="fridgecomp" value="<?=$_SESSION['user']['company']?>" required><br>
-    聯絡電話：<input type="tel" name="fridgephone" value="<?=$_SESSION['user']['tel']?>" placeholder="市話/手機號碼" required><br>
+    冰箱所屬機構：<input type="text" name="fridgecomp" value="<?=$_SESSION['users']['company']?>" required><br>
+    聯絡電話：<input type="tel" name="fridgephone" value="<?=$_SESSION['users']['tel']?>" placeholder="市話/手機號碼" required><br>
     冰箱地點：
     <select name="county" onchange="select_area(this.selectedIndex);">
         <option value="none" selected disabled hidden>請選擇縣市</option>

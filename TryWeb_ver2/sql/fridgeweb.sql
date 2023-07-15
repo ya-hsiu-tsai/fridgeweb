@@ -3,7 +3,7 @@ create database fridgeweb default character set utf8 collate utf8_general_ci;
 grant all on fridgeweb.* to 'staff'@'localhost' identified by 'password';
 use fridgeweb;
 
-create table user (
+create table users (
 	id int auto_increment primary key, 
 	name varchar(200) not null unique, 
 	mail varchar(200) not null, 
@@ -19,8 +19,8 @@ create table fridge (
 	tel int not null,
 	address varchar(200) not null,
 	coordinate varchar(200) not null,
-	user_id int not null,
-	foreign key(user_id) references user(id)
+	users_id int not null,
+	foreign key(users_id) references users(id)
 );
 
 create table product (

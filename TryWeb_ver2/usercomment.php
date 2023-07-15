@@ -2,15 +2,15 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
-$sql = $pdo->prepare('select * from fridge where user_id=?');
-$sql->execute([$_SESSION['user']['id']]);
+$sql = $pdo->prepare('select * from fridge where users_id=?');
+$sql->execute([$_SESSION['users']['id']]);
 echo '使用者回報系統<br>';
-echo '管理者：', $_SESSION['user']['name'], '<br>';
+echo '管理者：', $_SESSION['users']['name'], '<br>';
 echo '回報內容（未解決）：<br>';
 foreach($sql->fetchAll() as $row)
 {
+    echo '冰箱：', $row['name'];
     echo '<table>';
-    echo '<th align="left">冰箱：', $row['name'], '</th>';
     $sql_comment = $pdo->prepare('select * from comment where fridge_id=?');
     $sql_comment->execute([$row['id']]);
     $n = 1;

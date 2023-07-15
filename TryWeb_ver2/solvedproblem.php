@@ -2,10 +2,10 @@
 <?php
 session_start();
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
-$sql = $pdo->prepare('select * from fridge where user_id=?');
-$sql->execute([$_SESSION['user']['id']]);
+$sql = $pdo->prepare('select * from fridge where users_id=?');
+$sql->execute([$_SESSION['users']['id']]);
 echo '使用者回報系統<br>';
-echo '管理者：', $_SESSION['user']['name'], '<br>';
+echo '管理者：', $_SESSION['users']['name'], '<br>';
 echo '回報內容（已解決）：<br>';
 foreach($sql->fetchAll() as $row)
 {

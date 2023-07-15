@@ -1,19 +1,19 @@
 <?php require 'header.php'; ?>
 <?php
 session_start();
-unset($_SESSION['user']);
+unset($_SESSION['users']);
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
-$sql = $pdo->prepare('select * from user where name=?');
+$sql = $pdo->prepare('select * from users where name=?');
 $sql->execute([htmlspecialchars($_REQUEST['name'])]);
 foreach($sql->fetchAll() as $row)
 {
     if(password_verify($_REQUEST['pwd'], $row['password_hash']))
-        $_SESSION['user'] = [
+        $_SESSION['users'] = [
             'id' => $row['id'], 'name' => $row['name'], 'mail' => $row['mail'],
             'tel' => $row['tel'], 'company' => $row['company'], 'password_hash' => $row['password_hash']
         ];
 }
-if(isset($_SESSION['user']))
+if(isset($_SESSION['users']))
 {
     header("location:userhome.php");
 }
