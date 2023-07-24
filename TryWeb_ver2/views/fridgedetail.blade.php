@@ -1,6 +1,4 @@
 <?php require 'header.blade.php'; ?>
-//噢耶這裡有地圖ㄌ:D<br>
-//啊這裡食物放進去的時間怎麼寫我也沒懂<br>
 <div id="map"></div>
 <script src="../js/map.js"></script>
 <a href="home.blade.php">回首頁</a><br>

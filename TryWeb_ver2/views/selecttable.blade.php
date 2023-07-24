@@ -1,4 +1,10 @@
 <?php require 'header.blade.php'; ?>
+<script>
+    function send_address(address)
+    {
+        parent.postMessage(address);
+    }
+</script>
 <?php
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
 $sql = $pdo->prepare('select * from fridge where address like ?');
@@ -15,7 +21,7 @@ foreach($sql->fetchAll() as $row)
     echo '<a href="fridgedetail.blade.php?id=', $row['id'], '" target="_parent">', $row['name'], '</a>';
     echo '</td>';
     echo '<td>', $row['address'], '</td>';
-    echo '<td><button onclick="send_address("花蓮縣花蓮市國聯五路22號")">地圖</button></td>';
+    echo '<td><button onclick="send_address(\'', $row['address'], '\')">地圖</button></td>';
     echo '</tr>';
 }
 if($c == 0)

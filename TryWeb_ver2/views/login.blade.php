@@ -5,6 +5,6 @@
     密碼：<input type="password" name="pwd" required><br>
     <input type="submit" value="登入"><br>
 </form>
-<a href="forgetpwd.blade.php">忘記密碼</a><br>
+<!--<a href="forgetpwd.blade.php">忘記密碼</a><br>  先跳過-->
 <a href="home.blade.php">回首頁</a>
 <?php require 'footer.blade.php'; ?>

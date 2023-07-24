@@ -4,11 +4,11 @@
 <a href="login.blade.php">管理者登入</a>
 <a href="newuser.blade.php">註冊新帳號</a><br>
 <form name="select_location" action="selecttable.blade.php" target="table_iframe">
-    <select name="nearfridge">
+<!--    <select name="nearfridge">
         <option value="near" selected>附近冰箱</option>
         <option value="distance">依距離推薦</option>
         <option value="foodamount">依食物量推薦</option>
-    </select>
+    </select>   先跳過-->
     查詢冰箱：
     <select name="county" onchange="select_area(this.selectedIndex);">
         <option value="none" selected disabled hidden>請選擇縣市</option>
@@ -40,9 +40,11 @@
         var address = lat + "," + long;
         showmap(address);
     }
-    function send_address(address)
+    window.addEventListener("message", receiveMessage, false);
+    function receiveMessage(event)
     {
-        showmap(address);
+        var receivedData = event.data;
+        showmap(receivedData);
     }
 </script>
 <?php require 'footer.blade.php'; ?>

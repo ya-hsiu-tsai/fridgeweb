@@ -1,6 +1,4 @@
 <?php require 'header.blade.php'; ?>
-//噢耶這裡有地圖ㄌ:D<br>
-//啊這裡食物放進去的時間怎麼寫我也沒懂<br>
 <div id="map"></div>
 <script src="../js/map.js"></script>
 <a href="userhome.blade.php">回首頁</a><br>
@@ -35,6 +33,6 @@ foreach($sql->fetchAll() as $row)
 if($c == 0)
     echo '<tr><td colspan="3">冰箱內沒有食物</td></tr>';
 echo '</table>';
-echo '<a href="delfridge.blade.php?id=', $_REQUEST['id'], 'onclick="return confirm("是否確認要刪除冰箱？")"> 移除冰箱 </a><br>';
+echo '<a href="delfridge.blade.php?id=', $_REQUEST['id'], '"onclick="return confirm(\'是否確認要刪除冰箱？\')"> 移除冰箱 </a><br>';
 ?>
 <?php require 'footer.blade.php'; ?>

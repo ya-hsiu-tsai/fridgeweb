@@ -1,6 +1,5 @@
 <?php require 'header.blade.php'; ?>
 <?php
-session_start();
 $pdo = new PDO('mysql:host=localhost; dbname=fridgeweb; charset=utf8', 'staff', 'password');
 $sql = $pdo->prepare('select * from users where name=?');
 if($sql->execute([htmlspecialchars($_REQUEST['name'])]))

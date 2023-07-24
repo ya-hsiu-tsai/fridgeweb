@@ -1,5 +1,4 @@
 <?php require 'header.blade.php'; ?>
-//蛤這個警示蛤 Q
 <?php
 session_start();
 if(!isset($_SESSION['users']))
