@@ -1,4 +1,19 @@
-# fridgeweb
+#Web_laravel_ver
+進度：
+2023.08.09
+  檔案變更處
+    ：app/Http/Controllers/FridgeController.php
+    ：public/js
+    ：resources/views/layouts/empty.blade.php
+    ：resources/views/layouts/navigation.blade.php
+    ：resources/views/dashboard.blade.php
+    ：resources/views/selecttable.blade.php
+    ：resources/views/welcome.blade.php
+    ：routes/web.php
+  1.於一般使用者首頁成功顯示下拉式選單及地圖
+    ：因為新增冰箱功能未完成，無法確定他們是否有連結成功
+
+# TryWeb_ver2
 進度：
 2023.07.24
   1.一般使用者首頁的下拉式選單和冰箱列表和地圖已連結
