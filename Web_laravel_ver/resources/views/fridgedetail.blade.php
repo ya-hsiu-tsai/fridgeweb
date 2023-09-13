@@ -33,55 +33,57 @@
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
                 <div class="mt-16">
-                    <script src="{{ asset('js/twolayerselect.js') }}"></script>
-                    <form name="select_location" action="{{ route('selecttable') }}" target="table_iframe" method="POST">
-                        @csrf
-                        查詢冰箱：
-                        <select name="county" onchange="select_area(this.selectedIndex);">
-                            <option value="none" selected disabled hidden>請選擇縣市</option>
-                            <?php
-                                $county = [
-                                    "基隆市", "臺北市", "新北市", "桃園市", "新竹市", "新竹縣",
-                                    "苗栗縣", "臺中市", "彰化縣", "南投縣", "雲林縣", "嘉義市",
-                                    "嘉義縣", "臺南市", "高雄市", "屏東縣", "臺東縣", "花蓮縣",
-                                    "宜蘭縣", "澎湖縣", "金門縣", "連江縣"
-                                ];
-                                foreach($county as $i)
-                                    echo '<option value="', $i, '">', $i, '</option>';
-                            ?>
-                        </select>
-                        <select name="area">
-                            <option value="none" selected disabled hidden>請選擇鄉鎮市區</option>
-                        </select>
-                        <input type="submit" value="查詢"><br>
-                    </form>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        <iframe name="table_iframe" style="border:0;" width="100%" height="100%"></iframe>
+                    <div class="grid grid-cols-2 gap-6 lg:gap-8">
+                        <div class="py-6">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="p-6 text-gray-900">
+                                    <h2 style="font-size:25px;"><strong>冰箱資訊</strong></h2></br>
+                                    @foreach($fridges as $fridge)
+                                        <p><strong>冰箱名稱：</strong> {{ $fridge['name'] }}</p>
+                                        <p><strong>縣市：</strong> {{ $fridge['city'] }}</p>
+                                        <p><strong>地區：</strong> {{ $fridge['dist'] }}</p>
+                                        <p><strong>路段：</strong> {{ $fridge['address'] }}</p>
+                                        <p><strong>所屬機構：</strong> {{ $fridge['company'] }}</p>
+                                        <p><strong>聯絡電話：</strong> {{ $fridge['telephone'] }}</p>
+                                        <p><strong>電子郵件：</strong> {{ $fridge['email'] }}</p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
 
-                        <div id="map"></div>
+                        <div class="py-6">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="p-6 text-gray-900">
+                                    <h2 style="font-size:25px;"><strong>冰箱食物</strong></h2></br>
+                                    <table>
+                                    <th>名稱</th><th>種類</th><th>數量</th><th>放入時間</th>
+                                    @forelse($products as $product)
+                                        <tr>
+                                            <td>{{ $product['name'] }}</td>
+                                            <td>{{ $product['kind'] }}</td>
+                                            <td>{{ $product['num'] }}</td>
+                                            <td>{{ $product['put_time'] }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr><td colspan="4">目前冰箱內沒有食物</td></tr>
+                                    @endforelse
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-6">
+                            <div class="bg-white overflow-hidden shadow rounded-lg">
+                                <div class="p-6 text-gray-900">
+                                    <h2 style="font-size:25px;"><strong>使用者回報</strong></h2>
+                                    <p class="mt-1 text-sm text-gray-600">是否發現冰箱與網站資料不符？回報給管理員知道！</p><br>
+                                    <textarea type="text" name="content" style="width:50%; height:100px; border:1.5px black solid; border-radius: 5px;" required></textarea><br>
+                                    <input type="submit" value="送出"><br>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <script src="{{ asset('js/map.js') }}"></script>
-                <script>
-                    navigator.geolocation.getCurrentPosition(getcoordinate);  
-                    function getcoordinate(position)
-                    {  
-                        var lat = position.coords.latitude;  
-                        var long = position.coords.longitude;  
-                        var address = lat + "," + long;
-                        showmap(address);
-                    }
-                    
-                    function receiveMessage(event)
-                    {
-                        var receivedData = event.data;
-                        showmap(receivedData);
-                    }
-                    window.addEventListener("message", receiveMessage, false);
-
-                </script>
-
                 <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
                         <div class="flex items-center gap-4">
