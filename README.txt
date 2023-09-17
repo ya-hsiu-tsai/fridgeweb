@@ -1,5 +1,14 @@
 # Web_laravel_ver
 進度：
+2023.09.17
+  檔案變更處
+    ：app/Http/Controllers/FridgeController.php
+    ：resources/views/fridgedetail.blade.php
+    ：routes/web.php
+  1.從焙塔那同步進度
+  2.一般使用者冰箱內容頁面內的回報框可輸入並將文字存進資料庫
+*沒懂食物照片存在哪裡及如何顯示*
+*讓管理者查看的使用者回報系統未完成*
 2023.09.13
   檔案變更處
   （我增加的新功能所變更的檔案）
@@ -8,10 +17,10 @@
     ：resources/views/fridgedetail.blade.php
     ：resources/views/selecttable.blade.php
     ：routes/web.php
-  1.同步進度
+  1.從焙塔那同步進度
   2.修復一般使用者首頁的下拉式選單冰箱查詢及地圖顯示
   3.下拉式冰箱選單可點進冰箱內容頁面，能顯示冰箱資料、冰箱內食物及使用者回報框
-*使用者回報功能的後端未完成，只有回報框的視圖*
+*使用者回報功能的後端未完成，只有回報框的視圖* ✓
 2023.08.09
   檔案變更處
     ：app/Http/Controllers/FridgeController.php
