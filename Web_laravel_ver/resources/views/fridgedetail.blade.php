@@ -77,8 +77,17 @@
                                 <div class="p-6 text-gray-900">
                                     <h2 style="font-size:25px;"><strong>使用者回報</strong></h2>
                                     <p class="mt-1 text-sm text-gray-600">是否發現冰箱與網站資料不符？回報給管理員知道！</p><br>
-                                    <textarea type="text" name="content" style="width:50%; height:100px; border:1.5px black solid; border-radius: 5px;" required></textarea><br>
-                                    <input type="submit" value="送出"><br>
+                                    <form name="comment" action="{{ route('comment', ['id' => $fridge['id']]) }}" method="post">
+                                        @csrf
+                                        <textarea type="text" name="content" style="width:50%; height:100px; border:1.5px black solid; border-radius: 5px;" required></textarea><br>
+                                        <input type="submit" value="送出" onclick="return confirm('已確認回報內容嗎？')"><br>
+                                    </form>
+                                    <script>
+                                        var msg = '{{Session::get('alert')}}';
+                                        var exist = '{{Session::has('alert')}}';
+                                        if(exist)
+                                            alert(msg);
+                                    </script>
                                 </div>
                             </div>
                         </div>
