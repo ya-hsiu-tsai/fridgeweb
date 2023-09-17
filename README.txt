@@ -11,7 +11,6 @@
   *讓管理者查看的使用者回報系統未完成*
 2023.09.13
   檔案變更處
-  （我增加的新功能所變更的檔案）
     ：app/Http/Controllers/FridgeController.php
     ：app/Models/User.php（刪除焙塔那兩行會出error的代碼）
     ：resources/views/fridgedetail.blade.php
