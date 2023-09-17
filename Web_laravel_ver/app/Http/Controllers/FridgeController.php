@@ -28,4 +28,12 @@ class FridgeController extends Controller
 
         return view('fridgedetail', compact('fridges', 'products'));
     }
+
+    public function comment(Request $request)
+    {
+        $pdo = new PDO('mysql:host=mysql; dbname=fridgeweb; charset=utf8', 'sail', 'password');
+        $sql = $pdo->prepare('insert into comment values(null, ?, ?, default, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP())');
+        if($sql->execute([htmlspecialchars($request->input('content')), $request->input('id')]))
+            return redirect()->back() ->with('alert', '回報成功！');
+    }
 }
