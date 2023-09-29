@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::post('add', [AddFridgeController::class, 'store']);
 
     Route::get('show', [ShowController::class, 'edit'])->name('show');
+    Route::get('showcomment', [ShowController::class, 'showcomment'])->name('showcomment');
+    Route::get('solved', [ShowController::class, 'solved'])->name('solved');
+    Route::get('solvedcomment', [ShowController::class, 'solvedcomment'])->name('solvedcomment');
 
     Route::get('/show/edit/{fridgeId}', [FridgeEditController::class, 'edit'])->name('fridgeedit.edit');
     Route::patch('/show/edit/{fridgeId}', [FridgeEditController::class, 'update'])->name('fridgeedit.update');
