@@ -1,5 +1,16 @@
 # Web_laravel_ver
 進度：
+2023.09.29
+  檔案變更處
+    ：app/Http/Controllers/ShowController.php
+    ：resources/views/show/show-comment.blade.php
+    ：resources/views/show/show-solvedcomment.blade.php
+    ：resources/views/dashboard.blade.php
+    ：routes/web.php
+  1.於管理者儀表板增加使用者回報系統功能
+  2.管理者的使用者回報系統可分別查看已解決與未解決之回報
+  3.於未解決回報列表頁面可點按已解決選項，將回報標為解決
+  *用CURRENT_TIMESTAMP()儲存時間，發現與實際時間相差8小時*
 2023.09.17
   檔案變更處
     ：app/Http/Controllers/FridgeController.php
@@ -8,7 +19,7 @@
   1.從焙塔那同步進度
   2.一般使用者冰箱內容頁面內的回報框可輸入並將文字存進資料庫
   *沒懂食物照片存在哪裡及如何顯示*
-  *讓管理者查看的使用者回報系統未完成*
+  *讓管理者查看的使用者回報系統未完成* ✓
 2023.09.13
   檔案變更處
     ：app/Http/Controllers/FridgeController.php
