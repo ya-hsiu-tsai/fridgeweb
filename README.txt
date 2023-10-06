@@ -1,5 +1,13 @@
 # Web_laravel_ver
 進度：
+2023.10.06
+  檔案變更處
+    ：public/photos
+    ：resources/views/content/edit.blade.php  27~50行
+    ：resources/views/fridgedetail.blade.php  58~71行
+  1.新增一般使用者與管理者的冰箱資訊中的食物列表的食物照片
+  2.稍微修改表格樣式
+  *食物照片（photos資料夾）須放在public資料夾底下*
 2023.09.29
   檔案變更處
     ：app/Http/Controllers/ShowController.php
