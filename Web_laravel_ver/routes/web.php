@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('showcomment', [ShowController::class, 'showcomment'])->name('showcomment');
     Route::get('solved', [ShowController::class, 'solved'])->name('solved');
     Route::get('solvedcomment', [ShowController::class, 'solvedcomment'])->name('solvedcomment');
+    Route::get('expiredproduct', [ShowController::class, 'expiredproduct'])->name('expiredproduct');
 
     Route::get('/show/edit/{fridgeId}', [FridgeEditController::class, 'edit'])->name('fridgeedit.edit');
     Route::patch('/show/edit/{fridgeId}', [FridgeEditController::class, 'update'])->name('fridgeedit.update');
