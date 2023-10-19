@@ -22,8 +22,8 @@ class FridgeController extends Controller
         $sql = $pdo->prepare('select * from fridges where id=?');
         $sql->execute([$request->input('id')]);
         $fridges = $sql->fetchAll();
-        $sql = $pdo->prepare('select * from product where fridge_id=? order by alarm_time desc');
-        $sql->execute([$request->input('id')]);
+        $sql = $pdo->prepare('select * from product where fridge_id=? and exist=? order by alarm_time desc');
+        $sql->execute([$request->input('id'), 1]);
         $products = $sql->fetchAll();
 
         return view('fridgedetail', compact('fridges', 'products'));

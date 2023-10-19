@@ -63,4 +63,21 @@ class ShowController extends Controller
 
         return view('show.show-solvedcomment', compact('data'));
     }
+
+    public function expiredproduct(Request $request)
+    {
+        $pdo = new PDO('mysql:host=mysql; dbname=fridgeweb; charset=utf8', 'sail', 'password');
+        $expired = $pdo->prepare('select * from product where STR_TO_DATE(alarm_time, "%Y%m%d_%H%i")<NOW() and exist=?');
+        $expired->execute([1]);
+        foreach ($expired as $expire) {
+            $fridge = $pdo->prepare('select * from fridges where id=?');
+            $fridge->execute([$expire['fridge_id']]);
+            $data[] = [
+                'fridge' => $fridge,
+                'expire' => $expire
+            ];
+        }
+
+        return view('expiredproduct', compact('data'));
+    }
 }
