@@ -1,5 +1,16 @@
 # Web_laravel_ver
 進度：
+2023.10.19
+  檔案變更處
+    ：app/Http/Controllers/FridgeController.php
+    ：app/Http/Controllers/ShowController.php
+    ：resources/views/dashboard.blade.php
+    ：resources/views/expiredproduct.blade.php
+    ：routes/web.php
+  1.於管理者首頁新增過期食物列表
+  2.修改了一般使用者的冰箱資訊中食物列表裡的食物被刪除後還是顯示的錯誤
+  *想不到在冰箱資訊中食物列表標示過期食物的方法（將現在時間和資料庫中alarm_time比較的方法）*
+  *修改了config/app.php中的時區，但NOW()出來似乎還是少了8小時*
 2023.10.06
   檔案變更處
     ：public/photos
